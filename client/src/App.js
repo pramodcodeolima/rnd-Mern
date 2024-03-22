@@ -5,11 +5,15 @@ import Footer from './Components/Footer';
 
 
 function App() {
+
+  const appName = `RND React APP`
+  const version = `1.0.0`
+
   return (
     <>
-      <Header/>
+      <Header appName={appName}/>
       <Content/>
-      <Footer/>
+      <Footer version={version}/>
     </>
   );
 }
