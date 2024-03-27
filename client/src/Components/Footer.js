@@ -2,6 +2,9 @@ import React from 'react'
 
 export default function Footer(props) {
   return (
-    <div>Version - {props.version}</div>
+    <div className='foot'>
+      <div>Version - {props.version}</div>
+    </div>
+    
   )
 }
