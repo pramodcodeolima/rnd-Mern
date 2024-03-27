@@ -1,9 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { useState } from 'react'
 
-export default class Content extends Component {
-  render() {
-    return (
-      <div>Content</div>
-    )
+export default function Content() {
+  const [count, setCount] = useState(0)
+
+  const increment = () =>{
+    setCount(count + 1)
   }
+
+  const decrement = () =>{
+    setCount(count - 1)
+  }
+
+  return (
+    <div className='content'>
+      <div>
+        <p>The Count is {count} </p>
+        <button onClick={decrement}>-</button>
+        <button onClick={increment}>+</button>
+      </div>
+    </div>
+  )
 }
+

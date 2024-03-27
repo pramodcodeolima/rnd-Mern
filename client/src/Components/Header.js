@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
+import './style.css'
 
 export default class Header extends Component {
-    constructor(props){
-        super(props)
-    }
-
 
   render() {
     return (
-      <div>APP Name - {this.props.appName}</div>
+      <div className='container'>
+        <div className='head'>
+          <p>APP Name - {this.props.appName}</p>
+        </div>
+      </div>
+      
     )
   }
 }
