@@ -1,7 +1,8 @@
 const DUMMY_PRODUCTS_LIST = [
     {
+        "id": "001",
         "name":"pramod",
-        "age":25,
+        "age":"25",
         "home":"nawalapitiya",
     }
 ]
