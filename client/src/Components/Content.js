@@ -1,25 +1,23 @@
 import React from 'react'
 import { useState } from 'react'
+import RndFuncCom from './RndFuncCom'
+import RndClsCom from './RndClsCom'
 
 export default function Content() {
-  const [count, setCount] = useState(0)
-
-  const increment = () =>{
-    setCount(count + 1)
-  }
-
-  const decrement = () =>{
-    setCount(count - 1)
-  }
-
   return (
-    <div className='content'>
+    <>
+      <hr />
+      <h3>RND Functional Component</h3>
       <div>
-        <p>The Count is {count} </p>
-        <button onClick={decrement}>-</button>
-        <button onClick={increment}>+</button>
+        <RndFuncCom />
       </div>
-    </div>
+      <hr />
+      <h3>RND Class Component</h3>
+      <div>
+        <RndClsCom />
+      </div>
+      <hr />
+    </>
   )
 }
 

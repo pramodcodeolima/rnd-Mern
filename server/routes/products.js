@@ -5,12 +5,11 @@ var Products = require('../models/products')
 
 //List Products
 router.get('/', async (req, res, next) => {
-  
   try{
       const productList = await Products.find({}).exec()
       return res.status(200).json(productList)
   }catch(e){
-      res.status(500).json({ message: '500 error'})
+      res.status(404).json({ message: '404 error'})
   }
 
 });
@@ -38,7 +37,7 @@ router.get('/:id',async function(req, res, next)  {
 router.post('/',async(req, res, next) => {
   try{
     const { name, price } = req.body;
-    if (name && price){
+    if (name && price && !isNaN(price)){
       const addProduct = new Products({ name, price })
       await addProduct.save()
       return res.status(200).json(addProduct)
@@ -51,6 +50,7 @@ router.post('/',async(req, res, next) => {
     return res.status(500).json(err)
   }
 });
+
 
 
 //Delete Product
