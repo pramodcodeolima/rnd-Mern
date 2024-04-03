@@ -1,9 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { useState } from 'react'
+import RndFuncCom from './RndFuncCom'
+import RndClsCom from './RndClsCom'
 
-export default class Content extends Component {
-  render() {
-    return (
-      <div>Content</div>
-    )
-  }
+export default function Content() {
+  return (
+    <>
+      <hr />
+      <h3>RND Functional Component</h3>
+      <div>
+        <RndFuncCom />
+      </div>
+      <hr />
+      <h3>RND Class Component</h3>
+      <div>
+        <RndClsCom />
+      </div>
+      <hr />
+    </>
+  )
 }
+
