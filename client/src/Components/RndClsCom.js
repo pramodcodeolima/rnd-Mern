@@ -12,16 +12,16 @@ export default class RndClsCom extends Component {
     }
 
     componentDidMount(){
-      axios.get(`${process.env.REACT_APP_API_URL}`)
+      const URL = process.env.REACT_APP_API_URL // import endpoint from .env
+
+      axios.get(URL)
       .then((response) => {
-        //console.log(response.data)
         this.setState({
             isLoading: false,
             products: response.data
         });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.setState({
             isLoading: false,
             products: []

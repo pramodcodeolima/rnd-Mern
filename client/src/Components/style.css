@@ -40,3 +40,13 @@ button{
 .content button{
     width: 58px;
 }
+
+.rnd{
+    text-align: center;
+}
+
+.rndfunc{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
