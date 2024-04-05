@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Products = require('../models/products')
+var { validateRequestPayload } = require('../Utility/validateRequestPayload')
 
 
 //List Products
@@ -33,17 +34,26 @@ router.get('/:id',async function(req, res, next)  {
 });
 
 
+
+
 //Create Products
+
+const validationConfigCreatedObj = [
+  { key: "name", type: "string", isRequired: true },
+  { key: "price", type: "number", isRequired: true },
+  { key: "desc", type: "string", isRequired: false }
+]
+
 router.post('/',async(req, res, next) => {
   try{
-    const { name, price } = req.body;
-    if (name && price && !isNaN(price)){
-      const addProduct = new Products({ name, price })
+    const isError = validateRequestPayload(req.body, validationConfigCreatedObj)
+    if (!isError.length){
+      const addProduct = new Products(req.body)
       await addProduct.save()
       return res.status(200).json(addProduct)
     }
     else{
-      return res.status(400).json({ message: '400 error'})
+      return res.status(400).json(isError)
     }
   }
   catch{
@@ -53,32 +63,23 @@ router.post('/',async(req, res, next) => {
 
 
 
-//Delete Product
-router.delete('/:id',async (req, res, next) => {
-  try{
-    const id = req.params.id
-    const product = await Products.findOneAndDelete({_id: id}).exec()
-    if (product){
-      return res.status(200).json({ message: 'Product Deleted'})
-    }else{
-      return res.status(404).json({ message: '404 error'})
-    }
-  }catch(err){
-    return res.status(500).json({ message: '500 error'})
-  }
-});
-
-
 
 //Update products
+
+const validationConfigUpdateObj = [
+  { key: "name", type: "string", isRequired: false },
+  { key: "price", type: "number", isRequired: false },
+  { key: "desc", type: "string", isRequired: false }
+]
+
 router.put('/:id',async (req, res, next) => {
   try{
     const id = req.params.id;
-    const { name, price } = req.body;
-    if(name && price){
+    const isError = validateRequestPayload(req.body, validationConfigUpdateObj)
+    if(!isError.length){
       const updateProduct = await Products.findOneAndUpdate(
         { _id: id},
-        { $set: {name, price}},
+        req.body,
         { new: true}
       ).exec();
       if (updateProduct){
@@ -97,6 +98,25 @@ router.put('/:id',async (req, res, next) => {
   }
 
 })
+
+
+
+
+//Delete Product
+router.delete('/:id',async (req, res, next) => {
+  try{
+    const id = req.params.id
+    const product = await Products.findOneAndDelete({_id: id}).exec()
+    if (product){
+      return res.status(200).json({ message: 'Product Deleted'})
+    }else{
+      return res.status(404).json({ message: '404 error'})
+    }
+  }catch(err){
+    return res.status(500).json({ message: '500 error'})
+  }
+});
+
 
 
 module.exports = router;
