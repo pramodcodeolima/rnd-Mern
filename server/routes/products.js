@@ -6,11 +6,12 @@ var { validateRequestPayload } = require('../Utility/validateRequestPayload')
 
 //List Products
 router.get('/', async (req, res, next) => {
+  const { page = 1, limit = 10 } = req.query
   try{
-      const productList = await Products.find({}).exec()
-      return res.status(200).json(productList)
+    const productList = await Products.find({}).skip((page - 1) * limit).limit(limit).sort({_id : -1}).exec()
+    return res.status(200).json(productList)
   }catch(e){
-      res.status(404).json({ message: '404 error'})
+    res.status(404).json({ message: '404 error'})
   }
 
 });

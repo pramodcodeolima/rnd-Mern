@@ -1,11 +1,19 @@
-import React from 'react'
-import './style.css'
-import RndFuncCom from './RndFuncCom'
-import RndClsCom from './RndClsCom'
+import React from 'react';
+import './style.css';
+import RndFuncCom from './RndFuncCom';
+import RndClsCom from './RndClsCom';
+import CreateProduct from './CreateProduct';
 
 export default function Content() {
   return (
     <>
+      <hr />
+      <div className='rnd'>
+        <h3>CreatedProducts</h3>
+      </div>
+      <div className='rnd'>
+        <CreateProduct />
+      </div>
       <hr />
       <div className='rnd'>
         <h3>RND Functional Component</h3>
@@ -22,6 +30,5 @@ export default function Content() {
       </div>
       <hr />
     </>
-  )
+  );
 }
-
