@@ -12,12 +12,12 @@ export default function RndFuncCom() {
   useEffect(() => {
     axios.get(URL)
       .then((response) => {
-        setProducts(response.data)
+        setProducts(response.data);
+        setIsloading(false);
       })
       .catch(() => {
       })
       .finally(() => {
-        setIsloading(false)
       });
   }, [])
 
