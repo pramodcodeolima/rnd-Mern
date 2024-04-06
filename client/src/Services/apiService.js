@@ -7,6 +7,7 @@ const apiClient = axios.create({
 });
 
 export const fetchProducts = () => apiClient.get('/products');
-export const fetchProductsById = (id) => apiClient.get(`/products/${id}`)
+export const fetchProductsById = (id) => apiClient.get(`/products/${id}`);
 
-export const createProducts = (payload) => apiClient.post(`/products`, payload)
+export const createProducts = (payload) => apiClient.post(`/products`, payload);
+export const updateProducts = (id, payload) => apiClient.put(`/products/${id}`,payload);
