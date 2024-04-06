@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { createProducts } from '../Services/apiService'
+import '../Components/style.css'
 
 const CreateProduct = () => {
 
@@ -43,8 +44,8 @@ const CreateProduct = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='name'>Name : </label>
+        <div className='form-item'>
+          <label htmlFor='name'>Name  </label>
           <input
           type='text'
           id='name'
@@ -52,11 +53,11 @@ const CreateProduct = () => {
           value={product.name}
           onChange={handleChange}
           />
-          <div>{errors.name}</div>
+          <div className='error'>{errors.name}</div>
         </div>
 
-        <div>
-          <label htmlFor='price'>Price : </label>
+        <div className='form-item'>
+          <label htmlFor='price'>Price  </label>
           <input
           type='text'
           id='price'
@@ -64,11 +65,11 @@ const CreateProduct = () => {
           value={product.price}
           onChange={handleChange}
           />
-          <div>{errors.price}</div>
+          <div className='error'>{errors.price}</div>
         </div>
 
-        <div>
-          <label htmlFor='desc'>Desc : </label>
+        <div className='form-item'>
+          <label htmlFor='desc'>Desc  </label>
           <input
           type='text'
           id='desc'

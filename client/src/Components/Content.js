@@ -11,7 +11,7 @@ export default function Content() {
       <div className='rnd'>
         <h3>CreatedProducts</h3>
       </div>
-      <div className='rnd'>
+      <div className='rnd-form'>
         <CreateProduct />
       </div>
       <hr />
