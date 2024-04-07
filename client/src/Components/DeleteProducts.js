@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { updateProducts, fetchProductsById } from '../Services/apiService'
+import { deleteProducts, fetchProductsById } from '../Services/apiService'
 import '../Components/style.css'
 
-export default function UpdateProdcuts() {
+export default function DeleteProducts() {
 
 const [product, setProduct] = useState({id: '', name: '', price: '', desc: ''})
 const [errors, setErrors] = useState({})
@@ -19,7 +19,6 @@ useEffect(() => {
           price: fetchedProduct.price,
           desc: fetchedProduct.desc
         }));
-        console.log(fetchedProduct.name)
       })
       .catch((error) => {
         console.error("Error fetching product:", error);
@@ -32,16 +31,13 @@ useEffect(() => {
 const handleSubmit = (e) => {
   e.preventDefault();
   if (validateForm()) {
-    updateProducts(product.id, {
-      name: product.name,
-      price: product.price,
-      desc: product.desc
+    deleteProducts(product.id)
+    .then((response) => {
+        setProduct({id: '', name: '', price: 0, desc: ''})
+        setSuccess('Product Deleted Successfully')
     })
-    .then(() => {
-        setProduct({ id: '', name: '', price: '', desc: '' });
-        setSuccess('Product Updated Successfully')
-    })
-    .catch(() => {});
+    .catch((error) => {
+    });
   }
 };
 
@@ -80,6 +76,7 @@ const validateForm = () => {
           name='name'
           value={product.name}
           onChange={handleChange}
+          disabled
           />
         </div>
 
@@ -91,8 +88,8 @@ const validateForm = () => {
           name='price'
           value={product.price}
           onChange={handleChange}
+          disabled
           />
-          <div className='error'>{errors.price}</div>
         </div>
 
         <div className='form-item'>
@@ -103,10 +100,12 @@ const validateForm = () => {
           name='desc'
           value={product.desc}
           onChange={handleChange}
+          disabled
           />
           <div className='error'>{success}</div>
         </div>
-        <button type='submit'>Update Product</button>
+
+        <button type='submit'>Delete Product</button>
       </form>
     </>
   )

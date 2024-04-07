@@ -11,3 +11,4 @@ export const fetchProductsById = (id) => apiClient.get(`/products/${id}`);
 
 export const createProducts = (payload) => apiClient.post(`/products`, payload);
 export const updateProducts = (id, payload) => apiClient.put(`/products/${id}`,payload);
+export const deleteProducts = (id) => apiClient.delete(`/products/${id}`);

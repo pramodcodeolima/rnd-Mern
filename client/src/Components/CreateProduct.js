@@ -6,6 +6,7 @@ const CreateProduct = () => {
 
   const [product, setProduct] = useState({name: '', price: 0, desc: ''})
   const [errors, setErrors] = useState({})
+  const [success, setSuccess] = useState('');
 
 
   const handleSubmit = (e) => {
@@ -14,6 +15,7 @@ const CreateProduct = () => {
       createProducts(product)
       .then((response) => {
         setProduct({name: '', price: 0, desc: ''})
+        setSuccess('Product Created Successfully')
       })
       .catch((error) => {
         console.log(error);
@@ -78,6 +80,7 @@ const CreateProduct = () => {
           onChange={handleChange}
           />
           <div>{errors.desc}</div>
+          <div className='error'>{success}</div>
         </div>
         <button type='submit'>Create Product</button>
       </form>
