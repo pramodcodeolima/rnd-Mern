@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import Product from './Products'
 import Loading from './Loading'
 import { fetchProducts } from '../Services/apiService';
-import Products from './Products';
 
 export default function RndFuncCom() {
 
@@ -26,7 +25,7 @@ export default function RndFuncCom() {
   return (
     <>
     {isLoading ? <Loading /> : 
-      <div><Products products={products} /></div> }
+      <div><Product products={products} /></div> }
     </>
   )
 }

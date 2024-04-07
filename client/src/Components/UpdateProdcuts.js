@@ -12,12 +12,18 @@ useEffect(() => {
     fetchProductsById(product.id)
       .then((response) => {
         const fetchedProduct = response.data;
-        setProduct(fetchedProduct);
+        setProduct(prevProduct => ({
+          ...prevProduct,
+          name: fetchedProduct.name,
+          price: fetchedProduct.price,
+          desc: fetchedProduct.desc
+        }));
+        console.log(fetchedProduct.name)
       })
       .catch((error) => {
         console.error("Error fetching product:", error);
       });
-  }
+}
 
 }, [product.id]);
 
