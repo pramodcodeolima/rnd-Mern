@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { createProducts } from '../Services/apiService'
 import '../Components/style.css'
+import { useNavigate } from 'react-router-dom'
 
 const CreateProduct = () => {
 
   const [product, setProduct] = useState({name: '', price: 0, desc: ''})
   const [errors, setErrors] = useState({})
-  const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
 
   const handleSubmit = (e) => {
@@ -15,7 +16,7 @@ const CreateProduct = () => {
       createProducts(product)
       .then((response) => {
         setProduct({name: '', price: 0, desc: ''})
-        setSuccess('Product Created Successfully')
+        navigate('/')
       })
       .catch((error) => {
         console.log(error);
@@ -44,8 +45,12 @@ const CreateProduct = () => {
 
 
   return (
-    <>
+    <div className='subcontainer'>
+      
       <form onSubmit={handleSubmit}>
+        <div className='title'>
+          <h2>Create Products</h2>
+        </div>
         <div className='form-item'>
           <label htmlFor='name'>Name  </label>
           <input
@@ -80,11 +85,10 @@ const CreateProduct = () => {
           onChange={handleChange}
           />
           <div>{errors.desc}</div>
-          <div className='error'>{success}</div>
         </div>
         <button type='submit'>Create Product</button>
       </form>
-    </>
+    </div>
   )
 }
 

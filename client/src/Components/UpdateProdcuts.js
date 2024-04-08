@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { updateProducts, fetchProductsById } from '../Services/apiService'
 import '../Components/style.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function UpdateProdcuts() {
 
-const [product, setProduct] = useState({})
-const [errors, setErrors] = useState({})
-const [success, setSuccess] = useState('');
+const [product, setProduct] = useState({});
+const [errors, setErrors] = useState({});
+const navigate = useNavigate();
 
 useEffect(() => {
+  const productId = localStorage.getItem('id');
+  product.id = productId;
   if (product.id) {
     fetchProductsById(product.id)
       .then((response) => {
@@ -38,7 +41,7 @@ const handleSubmit = (e) => {
     })
     .then(() => {
         setProduct({ id: '', name: '', price: '', desc: '' });
-        setSuccess('Product Updated Successfully')
+        navigate('/');
     })
     .catch(() => {});
   }
@@ -57,8 +60,11 @@ const validateForm = () => {
 }
 
   return (
-    <>
+    <div className='subcontainer'>
       <form onSubmit={handleSubmit}>
+      <div className='title'>
+          <h2>Update Products</h2>
+      </div>
       <div className='form-item'>
           <label htmlFor='id'>ID  </label>
           <input
@@ -67,6 +73,7 @@ const validateForm = () => {
           name='id'
           value={product.id}
           onChange={handleChange}
+          disabled
           />
           <div className='error'>{errors.id}</div>
         </div>
@@ -102,10 +109,9 @@ const validateForm = () => {
           value={product.desc}
           onChange={handleChange}
           />
-          <div className='error'>{success}</div>
         </div>
         <button type='submit'>Update Product</button>
       </form>
-    </>
+    </div>
   )
 }

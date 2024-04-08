@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { deleteProducts, fetchProductsById } from '../Services/apiService'
 import '../Components/style.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function DeleteProducts() {
 
 const [product, setProduct] = useState({id: '', name: '', price: '', desc: ''})
 const [errors, setErrors] = useState({})
-const [success, setSuccess] = useState('');
+const navigate = useNavigate();
+
 
 useEffect(() => {
+  const productId = localStorage.getItem('id');
+  product.id = productId;
   if (product.id) {
     fetchProductsById(product.id)
       .then((response) => {
@@ -34,7 +38,7 @@ const handleSubmit = (e) => {
     deleteProducts(product.id)
     .then((response) => {
         setProduct({id: '', name: '', price: 0, desc: ''})
-        setSuccess('Product Deleted Successfully')
+        navigate('/');
     })
     .catch((error) => {
     });
@@ -54,8 +58,11 @@ const validateForm = () => {
 }
 
   return (
-    <>
+    <div className='subcontainer'>
       <form onSubmit={handleSubmit}>
+      <div className='title'>
+          <h2>Delete Products</h2>
+      </div>
       <div className='form-item'>
           <label htmlFor='id'>ID  </label>
           <input
@@ -64,6 +71,7 @@ const validateForm = () => {
           name='id'
           value={product.id}
           onChange={handleChange}
+          disabled
           />
           <div className='error'>{errors.id}</div>
         </div>
@@ -102,11 +110,10 @@ const validateForm = () => {
           onChange={handleChange}
           disabled
           />
-          <div className='error'>{success}</div>
         </div>
 
         <button type='submit'>Delete Product</button>
       </form>
-    </>
+    </div>
   )
 }

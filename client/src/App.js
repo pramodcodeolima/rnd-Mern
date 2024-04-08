@@ -1,20 +1,23 @@
 import './App.css';
-import Header from './Components/Header';
-import Content from './Components/Content';
-import Footer from './Components/Footer';
+import Home from './Components/Home';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import UpdateProdcuts from './Components/UpdateProdcuts';
+import DeleteProdcuts from './Components/DeleteProducts';
+import CreateProduct from './Components/CreateProduct';
+
 
 
 function App() {
 
-  const appName = `RND React APP`
-  const version = process.env.REACT_APP_VERSION
-
   return (
-    <>
-      <Header appName={appName}/>
-      <Content/>
-      <Footer version={version}/>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<Home />}></Route>
+        <Route path='/edit' element={<UpdateProdcuts />}></Route>
+        <Route path='/delete' element={<DeleteProdcuts />}></Route>
+        <Route path='/create' element={<CreateProduct />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
