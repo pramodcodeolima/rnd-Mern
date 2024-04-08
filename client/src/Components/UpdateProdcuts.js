@@ -4,7 +4,7 @@ import '../Components/style.css'
 
 export default function UpdateProdcuts() {
 
-const [product, setProduct] = useState({id: '', name: '', price: '', desc: ''})
+const [product, setProduct] = useState({})
 const [errors, setErrors] = useState({})
 const [success, setSuccess] = useState('');
 
@@ -19,7 +19,6 @@ useEffect(() => {
           price: fetchedProduct.price,
           desc: fetchedProduct.desc
         }));
-        console.log(fetchedProduct.name)
       })
       .catch((error) => {
         console.error("Error fetching product:", error);
@@ -92,7 +91,6 @@ const validateForm = () => {
           value={product.price}
           onChange={handleChange}
           />
-          <div className='error'>{errors.price}</div>
         </div>
 
         <div className='form-item'>
