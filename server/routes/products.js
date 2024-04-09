@@ -2,20 +2,33 @@ var express = require('express');
 var router = express.Router();
 var Products = require('../models/products')
 var { validateRequestPayload } = require('../Utility/validateRequestPayload')
+var { config } = require('../config/config')
 
 
 //List Products
 router.get('/', async (req, res, next) => {
-  const page = process.env.PAGE;
-  const limit = process.env.LIMIT;
   
-  req.query.page = page;
-  req.query.limit = limit;
-  try{
-    const productList = await Products.find({}).skip((page - 1) * limit).limit(limit).sort({_id : -1}).exec()
-    return res.status(200).json(productList)
-  }catch(e){
-    res.status(404).json({ message: '404 error'})
+  const page = req.query.page || config.PAGE;
+  const limit = req.query.limit || config.LIMIT;
+  const searchItem = req.query.search;
+
+  if(searchItem){
+    try{
+      const productList = await Products.find({name : searchItem}).exec()
+      return res.status(200).json(productList)
+    }catch(e){
+      res.status(404).json({ message: '404 error'})
+    }
+    
+  }else
+  {
+    try
+    {
+      const productList = await Products.find({}).skip((page - 1) * limit).limit(limit).sort({_id : -1}).exec()
+      return res.status(200).json(productList)
+    }catch(e){
+      res.status(404).json({ message: '404 error'})
+    }
   }
 
 });
