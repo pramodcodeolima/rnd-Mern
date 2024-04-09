@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Loading from './Loading'
-import Product from './Products'
-import axios from 'axios'
+import Products from './Products'
+import { fetchProducts } from '../Services/apiService'
 
 export default class RndClsCom extends Component {
 
@@ -12,16 +12,14 @@ export default class RndClsCom extends Component {
     }
 
     componentDidMount(){
-      axios.get(`${process.env.REACT_APP_API_URL}`)
+      fetchProducts()
       .then((response) => {
-        //console.log(response.data)
         this.setState({
             isLoading: false,
             products: response.data
         });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.setState({
             isLoading: false,
             products: []
@@ -35,7 +33,7 @@ export default class RndClsCom extends Component {
     return (
       <>
         {this.state.isLoading ? <Loading /> : 
-        <div>{this.state.products.map((item) => <Product key={item._id} name={item.name} price={item.price} />)}</div>
+        <div><Products products = {this.state.products} /></div>
         }
       </>
     )

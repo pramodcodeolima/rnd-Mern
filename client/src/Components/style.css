@@ -6,10 +6,20 @@
     flex-direction: row;
 }
 
+.subcontainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    padding-top: 50px;
+}
+
 .head{
     width: 100%;
     height: 100px;
     text-align: center;
+    font-size: 25px;
 }
 
 .log{
@@ -27,7 +37,7 @@
 
 .foot{
     width: 100%;
-    height: 200px;
+    height: 58px;
     padding-top: 20px;
     text-align: center;
 }
@@ -39,4 +49,98 @@ button{
 
 .content button{
     width: 58px;
+}
+
+.rnd{
+    text-align: center;
+}
+
+.rndfunc{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.datatable{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.datatable table {
+    width: 900px;
+    border: 1px solid #d3c5c5;
+}
+
+.datatable th,
+.datatable td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.datatable th {
+    background-color: #f2f2f2;
+}
+
+.datatable tbody tr:hover {
+    background-color: #ddd;
+}
+
+.rnd-form{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.form-item {
+    margin-bottom: 15px;
+}
+  
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+input[type='text'] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+button[type='submit'] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+button[type='submit']:hover {
+    background-color: #45a049;
+}
+
+.error{
+    color: red;
+}
+
+.btn button{
+    background-color: #2692a7;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.newBtn{
+    width: 100%;
+    height: 58px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-left: 230px;
 }
