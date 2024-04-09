@@ -36,7 +36,7 @@ const handleSubmit = (e) => {
   if (validateForm()) {
     updateProducts(product.id, {
       name: product.name,
-      price: product.price,
+      price: product.price ? product.price : 0,
       desc: product.desc
     })
     .then(() => {
