@@ -22,3 +22,17 @@
 ------------------------------------------------------
 
 
+//.env
+>Implement Port, MongoDB compass URL
+>Implement Pagination (page, limit) values
+
+
+//Routes
+>products.js        ( Implement all routes Here [view product, products create,product update, product delete])
+
+
+//utility -> validateRequestPayload()
+>The Function to do validation mechanism
+>Pass (payload, validateObject) as Parameters
+>And when get error it return errors
+
